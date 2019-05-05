@@ -65,8 +65,6 @@ def Mk_new_table(stock_num):
 
 
 def insert_data_toDB(stock_num, date, price, Rzye, Rqye):
-    # db = pymysql.connect('localhost','Pyer','pythonpass','test1')
-    # cursor = db.cursor()
     if not price:
         price = 'null'
     if not Rzye:
@@ -79,8 +77,7 @@ def insert_data_toDB(stock_num, date, price, Rzye, Rqye):
 
 
 def read_stock_list():
-    workbook = xlrd.open_workbook(r'D:\list.xls')
-    #print(workbook.sheet_names())
+    workbook = xlrd.open_workbook(r'D:\list.xls') #目标表格位置
 
     sheet1 = workbook.sheet_by_index(0)
 
@@ -95,7 +92,7 @@ cache = read_stock_list()
 stock_num_list = cache[0]
 Date_List = Make_Data_List()
 
-db = pymysql.connect('localhost','Pyer','pythonpass','test1')
+db = pymysql.connect('localhost','User','Passwd','Database_name')   #第二、三、四个参数分别为数据库用户名、密码、数据库名
 cursor = db.cursor()
 count = 0
 for i in range(0,len(stock_num_list)):
